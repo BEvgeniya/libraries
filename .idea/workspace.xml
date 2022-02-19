@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4cdedffe-ebc8-40cf-832d-4cbe5a10adb0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/id1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/id10.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/id2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/id3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/id4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/id5.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/id6.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/id7.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/id8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/id9.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,6 +74,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="424" y="3" key="CommitChangelistDialog2" timestamp="1645273597724">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="424" y="3" key="CommitChangelistDialog2/0.0.1536.816@0.0.1536.816" timestamp="1645273597724" />
     <state width="1515" height="208" key="GridCell.Tab.0.bottom" timestamp="1645272841193">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
