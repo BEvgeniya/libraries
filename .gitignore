@@ -2,3 +2,4 @@ books/
 .idea/
 venv/
 txt/
+.idea/workspace.xml

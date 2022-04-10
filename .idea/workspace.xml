@@ -29,9 +29,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="libraries" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -53,9 +54,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="recepes" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="libraries" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="D:/Python/recepes" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:/Python/recepes/recepes.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.recepes" />
       </list>
     </recent_temporary>
   </component>
@@ -77,22 +100,26 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="424" y="3" key="CommitChangelistDialog2/0.0.1536.816@0.0.1536.816" timestamp="1645273597724" />
-    <state width="1515" height="208" key="GridCell.Tab.0.bottom" timestamp="1645891300465">
+    <state x="549" y="163" key="FileChooserDialogImpl" timestamp="1648286950827">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1515" height="208" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1645891300465" />
-    <state width="1515" height="208" key="GridCell.Tab.0.center" timestamp="1645891300464">
+    <state x="549" y="163" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1648286950827" />
+    <state width="1515" height="208" key="GridCell.Tab.0.bottom" timestamp="1649614452290">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1515" height="208" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1645891300464" />
-    <state width="1515" height="208" key="GridCell.Tab.0.left" timestamp="1645891300464">
+    <state width="1515" height="208" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1649614452290" />
+    <state width="1515" height="208" key="GridCell.Tab.0.center" timestamp="1649614452289">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1515" height="208" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1645891300464" />
-    <state width="1515" height="208" key="GridCell.Tab.0.right" timestamp="1645891300465">
+    <state width="1515" height="208" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1649614452289" />
+    <state width="1515" height="208" key="GridCell.Tab.0.left" timestamp="1649614452289">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1515" height="208" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1645891300465" />
+    <state width="1515" height="208" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1649614452289" />
+    <state width="1515" height="208" key="GridCell.Tab.0.right" timestamp="1649614452290">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="1515" height="208" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1649614452290" />
     <state width="1515" height="258" key="GridCell.Tab.1.bottom" timestamp="1645126701732">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
