@@ -3,6 +3,7 @@ import os
 from bs4 import BeautifulSoup
 from pathvalidate import sanitize_filename
 from requests import HTTPError
+from urllib.parse import urljoin
 
 
 def check_for_redirect(url, response):
@@ -43,6 +44,12 @@ def parse_title(url, book_id, folder='books'):
 
     filename = str(book_id) + '. ' + title + '.txt'
 
+    image_path = soup.find('div', class_='bookimage').find('img')['src']
+    image_url = urljoin(url, image_path)
+
+    print('Заголовок: ', title)
+    print(image_url)
+
     return os.path.join(folder, filename)
 
 
@@ -74,7 +81,6 @@ def main():
         if filename != '':
             url_book = "https://tululu.org/txt.php?id=" + str(book_id)
             download_txt(url_book, filename)
-
 
 main()
 
