@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from pathvalidate import sanitize_filename
 from requests import HTTPError
 from urllib.parse import urljoin
-
+from urllib.parse import urlparse
 
 def check_for_redirect(url, response):
     if url != response.url:
@@ -22,12 +22,7 @@ def http_request(url):
 
     return response
 
-def parse_title(url, book_id, folder='books'):
-    response = http_request(url)
-    if response == None:
-        return ''
-
-    soup = BeautifulSoup(response.text, 'lxml')
+def parse_title(soup):
     header = soup.find('h1')
 
     titles = header.text.split('::')
@@ -36,6 +31,18 @@ def parse_title(url, book_id, folder='books'):
     else:
         title = titles[0]
 
+    return title
+
+
+def parse_image_url(soup, url_site):
+    image_path = soup.find('div', class_='bookimage').find('img')['src']
+    image_url = urljoin(url_site, image_path)
+
+    return image_url
+
+
+def download_txt(url, book_id, title,  folder='books'):
+
     title = sanitize_filename(title.strip())
     folder = sanitize_filename(folder.strip())
 
@@ -43,24 +50,29 @@ def parse_title(url, book_id, folder='books'):
         os.makedirs(folder)
 
     filename = str(book_id) + '. ' + title + '.txt'
+    filepath = os.path.join(folder, filename)
 
-    image_path = soup.find('div', class_='bookimage').find('img')['src']
-    image_url = urljoin(url, image_path)
+    response = http_request(url)
+    if response == None:
+        return ''
 
-    print('Заголовок: ', title)
-    print(image_url)
+    with open(filepath, 'wb') as file:
+        file.write(response.content)
 
-    return os.path.join(folder, filename)
+    return filepath
 
 
-def download_txt(url, filepath):
-    # """Функция для скачивания текстовых файлов.
-    # Args:
-    #     url (str): Cсылка на текст, который хочется скачать.
-    #     filepath (str): Полный путь сохраняемого файла
-    # Returns:
-    #     str: Путь до файла, куда сохранён текст. Имя файла формируется из заголовка скачанной книги
-    # """
+def download_image(url, book_id, folder='images'):
+    parse_result = urlparse(url)
+    image_name = os.path.basename(parse_result.path)
+
+    image_name = sanitize_filename(image_name.strip())
+    folder = sanitize_filename(folder.strip())
+
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+
+    filepath = os.path.join(folder, image_name)
 
     response = http_request(url)
     if response == None:
@@ -76,11 +88,22 @@ def main():
     for id in range(10):
         book_id = id + 1
         url_site = "https://tululu.org/b" + str(book_id) + '/'
-        filename = parse_title(url_site, book_id)
 
-        if filename != '':
+        response = http_request(url_site)
+        if response == None:
+            continue
+
+        soup = BeautifulSoup(response.text, 'lxml')
+        title = parse_title(soup)
+        image_url = parse_image_url(soup, url_site)
+
+        if title != '':
             url_book = "https://tululu.org/txt.php?id=" + str(book_id)
-            download_txt(url_book, filename)
+            download_txt(url_book, book_id, title)
+
+        if image_url != '':
+            download_image(image_url, book_id)
+
 
 main()
 
