@@ -40,6 +40,12 @@ def parse_image_url(soup, url_site):
 
     return image_url
 
+def parse_comments(soup):
+    comments = soup.find_all('div', class_='texts')
+    for comment in comments:
+        comment_text = comment.find('span').text
+        print(comment_text)
+
 
 def download_txt(url, book_id, title,  folder='books'):
 
@@ -96,6 +102,7 @@ def main():
         soup = BeautifulSoup(response.text, 'lxml')
         title = parse_title(soup)
         image_url = parse_image_url(soup, url_site)
+        parse_comments(soup)
 
         if title != '':
             url_book = "https://tululu.org/txt.php?id=" + str(book_id)
