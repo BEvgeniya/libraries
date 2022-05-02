@@ -46,6 +46,15 @@ def parse_comments(soup):
         comment_text = comment.find('span').text
         print(comment_text)
 
+def parse_genres(soup):
+    result = []
+    genres = soup.find('span', class_='d_book').find_all('a')
+    for genre in genres:
+        genre_text = genre.text
+        result.append(genre_text)
+    return result
+
+
 
 def download_txt(url, book_id, title,  folder='books'):
 
@@ -103,6 +112,9 @@ def main():
         title = parse_title(soup)
         image_url = parse_image_url(soup, url_site)
         parse_comments(soup)
+        print(title)
+        genres = parse_genres(soup)
+        print(genres)
 
         if title != '':
             url_book = "https://tululu.org/txt.php?id=" + str(book_id)
