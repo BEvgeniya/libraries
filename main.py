@@ -22,16 +22,24 @@ def http_request(url):
 
     return response
 
+
+def parse_book_page(soup, url_site):
+    book_page = []
+
+    return book_page
+
 def parse_title(soup):
     header = soup.find('h1')
 
     titles = header.text.split('::')
     if len(titles) == 0:
         title = header.text
+        author = ''
     else:
         title = titles[0]
+        author = titles[-1]
 
-    return title
+    return title.strip(), author.strip()
 
 
 def parse_image_url(soup, url_site):
@@ -40,11 +48,15 @@ def parse_image_url(soup, url_site):
 
     return image_url
 
+
 def parse_comments(soup):
+    comments_result = []
     comments = soup.find_all('div', class_='texts')
     for comment in comments:
         comment_text = comment.find('span').text
-        print(comment_text)
+        comments_result.append(comment_text)
+    return comments_result
+
 
 def parse_genres(soup):
     result = []
@@ -53,7 +65,6 @@ def parse_genres(soup):
         genre_text = genre.text
         result.append(genre_text)
     return result
-
 
 
 def download_txt(url, book_id, title,  folder='books'):
@@ -99,29 +110,33 @@ def download_image(url, book_id, folder='images'):
     return filepath
 
 
+def parse_book_page(url_site):
+    book_page = {}
+
+    response = http_request(url_site)
+    if response == None:
+        return book_page
+
+    soup = BeautifulSoup(response.text, 'lxml')
+    book_page['title'], book_page['author'] = parse_title(soup)
+    book_page['image_url'] = parse_image_url(soup, url_site)
+    book_page['comments'] = parse_comments(soup)
+    book_page['genres'] = parse_genres(soup)
+    return book_page
+
+
 def main():
     for id in range(10):
         book_id = id + 1
         url_site = "https://tululu.org/b" + str(book_id) + '/'
+        parse_book_page(url_site)
 
-        response = http_request(url_site)
-        if response == None:
-            continue
-
-        soup = BeautifulSoup(response.text, 'lxml')
-        title = parse_title(soup)
-        image_url = parse_image_url(soup, url_site)
-        parse_comments(soup)
-        print(title)
-        genres = parse_genres(soup)
-        print(genres)
-
-        if title != '':
-            url_book = "https://tululu.org/txt.php?id=" + str(book_id)
-            download_txt(url_book, book_id, title)
-
-        if image_url != '':
-            download_image(image_url, book_id)
+        # if title != '':
+        #     url_book = "https://tululu.org/txt.php?id=" + str(book_id)
+        #     download_txt(url_book, book_id, title)
+        #
+        # if image_url != '':
+        #     download_image(image_url, book_id)
 
 
 main()
