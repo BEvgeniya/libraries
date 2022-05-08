@@ -5,6 +5,8 @@ from pathvalidate import sanitize_filename
 from requests import HTTPError
 from urllib.parse import urljoin
 from urllib.parse import urlparse
+import argparse
+
 
 def check_for_redirect(url, response):
     if url != response.url:
@@ -22,11 +24,6 @@ def http_request(url):
 
     return response
 
-
-def parse_book_page(soup, url_site):
-    book_page = []
-
-    return book_page
 
 def parse_title(soup):
     header = soup.find('h1')
@@ -79,7 +76,7 @@ def download_txt(url, book_id, title,  folder='books'):
     filepath = os.path.join(folder, filename)
 
     response = http_request(url)
-    if response == None:
+    if response is None:
         return ''
 
     with open(filepath, 'wb') as file:
@@ -101,7 +98,7 @@ def download_image(url, book_id, folder='images'):
     filepath = os.path.join(folder, image_name)
 
     response = http_request(url)
-    if response == None:
+    if response is None:
         return ''
 
     with open(filepath, 'wb') as file:
@@ -114,7 +111,7 @@ def parse_book_page(url_site):
     book_page = {}
 
     response = http_request(url_site)
-    if response == None:
+    if response is None:
         return book_page
 
     soup = BeautifulSoup(response.text, 'lxml')
@@ -126,19 +123,22 @@ def parse_book_page(url_site):
 
 
 def main():
-    for id in range(10):
-        book_id = id + 1
-        url_site = "https://tululu.org/b" + str(book_id) + '/'
-        parse_book_page(url_site)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--start_id', help='Начальный индекс')
+    parser.add_argument('--end_id', help='Конечный индекс')
+    args = parser.parse_args()
+    start_id = int(args.start_id)
+    end_id = int(args.end_id)
 
-        # if title != '':
-        #     url_book = "https://tululu.org/txt.php?id=" + str(book_id)
-        #     download_txt(url_book, book_id, title)
-        #
-        # if image_url != '':
-        #     download_image(image_url, book_id)
+    for book_id in range(start_id, end_id + 1):
+        url_site = "https://tululu.org/b" + str(book_id) + '/'
+        book_page = parse_book_page(url_site)
+        if book_page['title'] != '':
+            url_book = "https://tululu.org/txt.php?id=" + str(book_id)
+            download_txt(url_book, book_id, book_page['title'])
+
+        if book_page['image_url'] != '':
+            download_image(book_page['image_url'], book_id)
 
 
 main()
-
-
